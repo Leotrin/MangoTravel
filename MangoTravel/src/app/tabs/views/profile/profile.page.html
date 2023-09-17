@@ -1,0 +1,77 @@
+<ion-content>
+  <div style="margin: auto">
+    <ion-img
+      style="width: 30%; margin: auto; margin-top: 5%"
+      src="assets/icon/mtIcon.png"
+    ></ion-img>
+    <!-- <h2 class="mangoTravelHeader">MangoTravel</h2> -->
+  </div>
+  <div style="margin-top: 25%">
+    <ion-list>
+      <form [formGroup]="profileForm">
+        <ion-list>
+          <ion-label class="stacked" position="stacked">Name</ion-label>
+          <ion-item
+            class="ion-padding-start form-items"
+            lines="none ion-no-padding"
+          >
+            <div class="alignItems">
+              <ion-icon slot="start" name="person-outline"></ion-icon>
+              <ion-input
+                style="margin-left: 5px"
+                type="text"
+                formControlName="name"
+              ></ion-input>
+            </div>
+          </ion-item>
+          <ion-label class="stacked" position="stacked">Email</ion-label>
+          <ion-item
+            class="ion-padding-start form-items"
+            lines="none ion-no-padding"
+          >
+            <div class="alignItems">
+              <ion-icon slot="start" name="at-outline"></ion-icon>
+
+              <ion-input
+                style="margin-left: 5px"
+                type="email"
+                formControlName="email"
+              ></ion-input>
+            </div>
+          </ion-item>
+          <ion-label class="stacked" position="stacked">Phone</ion-label>
+          <ion-item
+            class="ion-padding-start form-items"
+            lines="none ion-no-padding"
+          >
+            <div class="alignItems">
+              <ion-icon slot="start" name="call-outline"></ion-icon>
+
+              <ion-input
+                style="margin-left: 5px"
+                type="text"
+                formControlName="phone"
+              ></ion-input>
+            </div>
+          </ion-item>
+        </ion-list>
+      </form>
+    </ion-list>
+  </div>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12">
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="submitUser()"
+        expand="block"
+        class="action-button"
+        style="padding-bottom: 15px"
+        [disabled]="!profileForm.valid"
+        >{{ "Save" }}</ion-button
+      >
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<ion-footer *ngIf="!hideFooter"> </ion-footer>

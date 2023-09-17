@@ -1,0 +1,7 @@
+{
+  "name": "MangoTravel",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

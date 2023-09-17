@@ -1,0 +1,60 @@
+<ion-content [fullscreen]="true">
+  <div style="margin: auto">
+    <ion-img
+      style="width: 30%; margin: auto; margin-top: 5%"
+      src="assets/icon/mtIcon.png"
+    ></ion-img>
+    <!-- <h2 class="mangoTravelHeader">MangoTravel</h2> -->
+  </div>
+  <div *ngIf="!showSkeleton">
+    <div style="margin: auto">
+      <h2 class="mangoTravelSubHeader">Recent Searches</h2>
+    </div>
+    <div>
+      <swiper-container
+        initialSlide="1"
+        (activeindexchange)="getActiveIndex()"
+        #swiper
+        id="swiper"
+        class="coverflow"
+        grab-cursor="true"
+        centered-slides="true"
+        slides-per-view="2"
+        slideShadows="false"
+      >
+        <swiper-slide
+          (click)="goToTripDetails(trip.response,trip.image)"
+          *ngFor="let trip of recentTrips; let i = index"
+        >
+          <ion-card class="ion-padding" style="padding: 0">
+            <ion-img
+              class="blurImage"
+              [src]="tripService.getImageFromURL(trip.image)"
+            ></ion-img>
+            <div class="image-text">
+              {{ trip.where.split(',')[0].split('-')[0] }}
+            </div>
+          </ion-card>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <ion-item *ngIf="recentTrips?.length == 0">
+      <div style="margin: auto">
+        <h2 class="noResultsMessage">No Results</h2>
+      </div>
+    </ion-item>
+    <app-trip-buttons
+      [activeIndex]="swiperRef?.nativeElement.swiper.activeIndex"
+      [userLocation]="userLocation"
+      [recentTrips]="recentTrips"
+    ></app-trip-buttons>
+
+    <div style="width: 100%; height: 40%">
+      <app-map></app-map>
+    </div>
+  </div>
+  <div class="ion-padding">
+    <app-skeleton-loader *ngIf="showSkeleton"></app-skeleton-loader>
+  </div>
+</ion-content>

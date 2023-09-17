@@ -1,0 +1,32 @@
+<ion-content *ngIf="tripDetails?.length > 0" [fullscreen]="true">
+  <div style="margin: auto">
+    <h2 class="mangoTravelSubHeader">Trip Details</h2>
+  </div>
+  <!-- <ion-accordion-group expand="inset" value="1">
+    <div *ngFor="let formattedContent of formattedContentArray;let i = index">
+      <ion-accordion class="ion-margin-bottom" value="{{i}}">
+        <ion-item slot="header">
+          <ion-label>{{ 'Day' + ' ' + (i+1) }}</ion-label>
+        </ion-item>
+        <ion-card slot="content">
+          <ion-card-content>
+            <div [innerHTML]="formattedContent"></div>
+          </ion-card-content>
+        </ion-card>
+      </ion-accordion>
+    </div>
+  </ion-accordion-group> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        *ngFor="let formattedContent of formattedContentArray;let i = index"
+        size="6"
+        style="padding-bottom: 15px"
+      >
+        <ion-card (click)="openDayInformationModal(i)" class="cardText">
+          {{"DAY" + ' ' + (i+1)}}
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

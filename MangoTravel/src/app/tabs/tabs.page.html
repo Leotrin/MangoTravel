@@ -1,0 +1,38 @@
+<ion-content [fullscreen]="true" scrollY="false">
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button
+        [class.activeIndex]="selectedIndex == 0"
+        (click)="goToTab('landing-page',0)"
+      >
+        <ion-icon name="apps"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button
+        [class.activeIndex]="selectedIndex == 1"
+        (click)="goToTab('search-page',1)"
+      >
+        <ion-icon name="search"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button
+        [class.activeIndex]="selectedIndex == 2"
+        (click)="goToTab('profile',2)"
+      >
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button
+        [class.activeIndex]="selectedIndex == 3"
+        (click)="goToTab('chat',3)"
+      >
+        <ion-img src="assets/icon/chatIcon.png"></ion-img>
+      </ion-tab-button>
+
+      <!-- <ion-tab-button
+        tab="recent-searches"
+        (click)="goToTab('recent-searches')"
+      >
+        <ion-icon name="logo-buffer"></ion-icon>
+        Recent Searches
+      </ion-tab-button> -->
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

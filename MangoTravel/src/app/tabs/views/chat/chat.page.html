@@ -1,0 +1,55 @@
+<ion-content color="light" class="padding-bottom">
+  <div style="margin: auto">
+    <ion-img
+      style="width: 30%; margin: auto; margin-top: 5%; margin-bottom: 5%"
+      src="assets/icon/mtIcon.png"
+    ></ion-img>
+    <!-- <h2 class="mangoTravelHeader">MangoTravel</h2> -->
+  </div>
+  <ion-grid class="ion-no-padding">
+    <div *ngIf="chatMessages != null ">
+      <div *ngFor="let chats of chatMessages">
+        <div style="padding-top: 5px"></div>
+        <div
+          class="bubbleWrapper"
+          *ngFor="let chat of chats.chats;let i = index"
+        >
+          <div
+            class="inlineContainer"
+            [ngClass]="chat.senderId != -1 ? 'own' : ''"
+          >
+            <div [ngClass]="chat.senderId == -1 ? 'otherBubble' : 'ownBubble'">
+              <ion-label>
+                <p *ngIf="chat.senderId != -1">{{chat.message }}</p>
+                <p *ngIf="chat.senderId == -1" [innerHtml]="chat.message"></p>
+              </ion-label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-grid>
+</ion-content>
+
+<ion-footer
+  color="light"
+  class="ion-no-border"
+  [style]="'margin-bottom:' + margin + 'px'"
+>
+  <ion-card>
+    <ion-item lines="none">
+      <ion-input
+        class="chatInput"
+        [disabled]="disableInput"
+        type="text"
+        placeholder="{{'Type a message...'}}"
+        [(ngModel)]="userMessage"
+      ></ion-input>
+      <ion-buttons slot="end">
+        <ion-button (click)="submitChat()">
+          <ion-icon name="send-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-card>
+</ion-footer>

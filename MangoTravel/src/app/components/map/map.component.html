@@ -1,0 +1,15 @@
+<ion-card class="map-container">
+  <google-map
+    style="margin: auto; display: flex; width: 100%"
+    height="400px"
+    [center]="center"
+    [zoom]="zoom"
+    [options]="mapOptions"
+  >
+    <map-marker
+      *ngFor="let markerPosition of markerPositions"
+      [position]="markerPosition"
+      [options]="markerOptions"
+    ></map-marker>
+  </google-map>
+</ion-card>

@@ -1,0 +1,47 @@
+swiper-container {
+  width: 80%;
+  padding-bottom: 0px;
+}
+
+swiper-slide {
+  width: 100px;
+  height: 180px;
+  background-color: white;
+  background: white;
+}
+
+swiper-slide {
+  // display: block;
+  // width: 100%;
+  ion-card {
+    border-radius: 16px;
+  }
+}
+.image-text {
+  color: white;
+  padding: 5px 10px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.noResultsMessage {
+  color: var(--ion-color-primary);
+  text-align: center;
+  font-family: Ubuntu;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.blurImage {
+  filter: brightness(0.7);
+}

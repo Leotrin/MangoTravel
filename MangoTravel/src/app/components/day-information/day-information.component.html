@@ -1,0 +1,29 @@
+<ion-content>
+  <div style="width: 100%" class="ion-no-padding" lines="none">
+    <ion-img
+      style="height: 200px; object-fit: cover"
+      [src]="searchPageService.getImageFromURL(tripImage)"
+    ></ion-img>
+    <p class="dayP">{{ "DAY" + " " + (index + 1) }}</p>
+  </div>
+  <ion-card>
+    <ion-card-content>
+      <div [innerHTML]="data[index]"></div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-item lines="none" class="ion-no-padding ion-no-margin buttons">
+    <ion-button slot="start" *ngIf="index != 0" fill="clear" (click)="goBack()">
+      <ion-img src="assets/icon/left-arrow.png"></ion-img>
+    </ion-button>
+    <ion-button
+      slot="end"
+      *ngIf="index + 1 < data?.length"
+      fill="clear"
+      (click)="goForward()"
+    >
+      <ion-img src="assets/icon/right-arrow.png"></ion-img>
+    </ion-button>
+  </ion-item>
+</ion-footer>

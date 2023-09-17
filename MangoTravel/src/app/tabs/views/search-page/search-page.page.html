@@ -1,0 +1,175 @@
+<ion-content [fullscreen]="true">
+  <div style="margin: auto">
+    <ion-img
+      style="width: 30%; margin: auto; margin-top: 5%"
+      src="assets/icon/mtIcon.png"
+    ></ion-img>
+    <!-- <h2 class="mangoTravelHeader">MangoTravel</h2> -->
+    <h3 style="margin-top: 10px" class="mangoTravelSubHeader">
+      - if not now, when? -
+    </h3>
+  </div>
+
+  <div style="margin-top: 25%">
+    <ion-list>
+      <form [formGroup]="searchForm">
+        <ion-list>
+          <ion-label class="stacked" position="stacked">City Name</ion-label>
+
+          <ion-item
+            button="false"
+            lines="none"
+            class="ion-no-padding form-items"
+          >
+            <ion-searchbar
+              style="margin-left: -25px; --box-shadow: none"
+              searchIcon="undefined"
+              [debounce]="500"
+              color="transparent"
+              (ionInput)="handleChange($event)"
+              placeholder="{{ 'Ex: Paris'  }}"
+              formControlName="where"
+            ></ion-searchbar>
+          </ion-item>
+          <div *ngIf="citiesList.length > 0">
+            <ion-item
+              lines="full"
+              style="padding: 0 30px"
+              class="ion-no-padding"
+              *ngFor="let location of citiesList;let i = index"
+            >
+              <ion-icon color="medium" name="location"></ion-icon>
+              <ion-label (click)="saveSelectedCity(location.description)">
+                <p>{{ location.description }}</p>
+              </ion-label>
+            </ion-item>
+          </div>
+
+          <ion-row>
+            <ion-col size="6">
+              <ion-label class="stacked" position="stacked">From</ion-label>
+              <ion-item
+                lines="none"
+                id="datePickerModal"
+                class="newDateItem form-items"
+              >
+                <ion-icon
+                  style="position: absolute"
+                  slot="start"
+                  name="calendar-outline"
+                ></ion-icon>
+                <ion-label
+                  style="padding: 5px 0"
+                  class="ion-no-padding"
+                  slot="end"
+                >
+                  <p>
+                    {{searchForm['controls'].from_date.value | date : 'MMM
+                    d,y'}}
+                  </p>
+                </ion-label>
+                <!-- <ion-datetime-button
+                  style="padding: 12px 0 12px 0"
+                  datetime="datetime"
+                ></ion-datetime-button> -->
+              </ion-item>
+
+              <ion-modal
+                [keepContentsMounted]="true"
+                class="dateTimeModal"
+                trigger="datePickerModal"
+                [cssClass]="'bottom-end'"
+              >
+                <ng-template>
+                  <ion-datetime
+                    style="width: 100%"
+                    date
+                    [locale]="getLocale"
+                    presentation="date"
+                    size="cover"
+                    id="datetime"
+                    [showDefaultButtons]="true"
+                    formControlName="from_date"
+                    (ionChange)="getMinDate($event)"
+                  ></ion-datetime>
+                </ng-template>
+              </ion-modal>
+            </ion-col>
+            <ion-col size="6">
+              <ion-label class="stacked" position="stacked">To</ion-label>
+              <ion-item
+                lines="none"
+                id="datePickerModal1"
+                class="newDateItem form-items"
+              >
+                <ion-icon
+                  style="position: absolute"
+                  slot="start"
+                  name="calendar-outline"
+                ></ion-icon>
+                <ion-label style="padding: 5px 0" slot="end">
+                  <p>
+                    {{searchForm['controls'].to_date.value | date : 'MMM d, y'}}
+                  </p>
+                </ion-label>
+                <!-- <ion-datetime-button
+                style="padding: 12px 0 12px 0"
+                datetime="datetime"
+              ></ion-datetime-button> -->
+              </ion-item>
+
+              <ion-modal
+                [keepContentsMounted]="true"
+                class="dateTimeModal"
+                trigger="datePickerModal1"
+                [cssClass]="'bottom-end'"
+              >
+                <ng-template>
+                  <ion-datetime
+                    style="width: 100%"
+                    date
+                    [locale]="getLocale"
+                    [min]="minSelectedDate | date : 'yyy-MM-dd'"
+                    presentation="date"
+                    size="cover"
+                    id="datetime1"
+                    formControlName="to_date"
+                    [showDefaultButtons]="true"
+                  ></ion-datetime>
+                </ng-template>
+              </ion-modal>
+            </ion-col>
+          </ion-row>
+
+          <ion-label class="stacked" position="stacked">Person</ion-label>
+          <ion-item
+            class="ion-padding-start form-items"
+            lines="none ion-no-padding"
+          >
+            <div style="padding: 2px 0">
+              <ion-input
+                placeholder="Ex:2"
+                type="number"
+                formControlName="people"
+              ></ion-input>
+            </div>
+          </ion-item>
+        </ion-list>
+      </form>
+    </ion-list>
+  </div>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12">
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="getTripDetails() "
+        expand="block"
+        class="action-button"
+        style="padding-bottom: 15px"
+        [disabled]="!searchForm.valid"
+        >{{ "Search" }}</ion-button
+      >
+    </ion-col>
+  </ion-row>
+</ion-content>
